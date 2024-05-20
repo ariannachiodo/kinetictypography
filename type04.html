@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <iframe src="index.html" width="100%" height="40px"></iframe>
+	<title>FLOW</title>
+	<style>
+		@font-face {
+    font-family: "Suisse Int'l Book";
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot");
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot?#iefix") format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.svg#Suisse Int'l Book") format("svg");
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+	background-color: black;
+}
+
+button {
+    font-family: "Suisse Int'l Book"; font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	position: absolute;
+	border: none;
+    background: none;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    margin-bottom: 80px;
+
+
+}
+button:hover {
+    text-decoration: underline;
+  }
+
+
+	</style>
+</head>
+<body>
+	<button onclick="randomPage()">RANDOMIZE</button>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	
+	<script>
+			function randomPage() {
+  var pages = ['type01.html', 'type02.html', 'type03.html', 'type04.html', 'type05.html', 'type06.html'];
+  var currentPage = window.location.pathname.split("/").pop();
+  var otherPages = pages.filter(page => page !== currentPage);
+  var randomPage = otherPages[Math.floor(Math.random() * otherPages.length)];
+  window.location.href = randomPage;}
+  
+    let font, pos
+let fs = 300
+let t = 0
+
+function preload() {
+  font = loadFont('https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf')
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight)
+  textSize(fs)
+  pos = font.textToPoints('ROTATE', windowWidth/5.5, windowHeight/1.8)
+  textAlign(CENTER,CENTER)
+}
+
+function draw() {
+  background(0)
+  stroke(255)
+
+  for (let i = 0; i < pos.length; i++) {
+    let ang = map(i, 0, pos.length, 0, PI / 4)
+    push()
+    translate(pos[i].x, pos[i].y)
+    rotate(t)
+    line(0, 0,-50, -50)
+    pop()
+  }
+  t += 0.05
+}
+
+</script>
+	
+</body>
+</html>

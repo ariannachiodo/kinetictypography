@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<iframe src="index.html" width="100%" height="40px"></iframe>
+
+	<title>FLOW</title>
+	<style>
+	@font-face {
+    font-family: "Suisse Int'l Book";
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot");
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot?#iefix") format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.svg#Suisse Int'l Book") format("svg");
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+	background-color: black;
+}
+
+button {
+    font-family: "Suisse Int'l Book"; font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	position: absolute;
+	border: none;
+    background: none;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    margin-bottom: 80px;
+
+
+}
+button:hover {
+    text-decoration: underline;
+  }
+
+
+	</style>
+</head>
+<body>
+	<button onclick="randomPage()">RANDOMIZE</button>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	
+	<script>
+	function randomPage() {
+  var pages = ['type01.html', 'type02.html', 'type03.html', 'type04.html', 'type05.html', 'type06.html'];
+  var currentPage = window.location.pathname.split("/").pop();
+  var otherPages = pages.filter(page => page !== currentPage);
+  var randomPage = otherPages[Math.floor(Math.random() * otherPages.length)];
+  window.location.href = randomPage;
+}
+	const size = 500; //font size
+	const fontFile = "https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf";
+	
+    let img;
+let pg;
+let textTexture;
+let boxSize = 400;
+let font1;
+let t;
+
+let indexWord = 0;
+let words = ['UNPREDICTABLE'];
+
+
+function preload() {
+  font1 = loadFont('https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight,WEBGL);
+	  pg = createGraphics(300, 300);
+	pg.image = (img);
+	
+  textTexture = createGraphics(boxSize,boxSize);
+	
+	textTexture.background(255);
+  textTexture.fill(0);
+	textTexture.textFont(font1);
+  // textTexture.textAlign(CENTER);
+  textTexture.textSize(48);
+}
+
+function draw() {
+	background(0);
+	noStroke();
+	let wave = (sin(frameCount * 0.05 +350)*3);
+	
+	textTexture.background(255);
+	textTexture.translate(0,wave);
+	for(let i = 0; i <=30; i++){
+			textTexture.fill(i * 8); // Aggiunto cambiamento di colore
+			textTexture.text(words[indexWord], 0,i*50);
+	}
+
+	push();
+	rotateZ(radians(45));
+	push();
+	rotateX(frameCount * 0.02); // Modificato la velocità di rotazione
+	// textureWrap(wrapX, [wrapY])
+	texture(textTexture);
+	box(boxSize);
+	pop();
+	pop();
+	
+	t+=50;
+}
+
+function changeWord() {
+	indexWord++;
+	if(indexWord > 4){
+		indexWord = 0;
+	}
+	setTimeout(changeWord, 500)
+}
+</script>
+	<script src="./sketch.js"></script>
+</body>
+</html>

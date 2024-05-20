@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<iframe src="index.html" width="100%" height="40px"></iframe>
+	<title>FLOW</title>
+	<style>
+	@font-face {
+    font-family: "Suisse Int'l Book";
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot");
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot?#iefix") format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.svg#Suisse Int'l Book") format("svg");
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+	background-color: black;
+}
+
+button {
+    font-family: "Suisse Int'l Book"; font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	position: absolute;
+	border: none;
+    background: none;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    margin-bottom: 80px;
+
+
+}
+button:hover {
+    text-decoration: underline;
+  }
+
+
+	</style>
+</head>
+<body>
+	<button onclick="randomPage()">RANDOMIZE</button>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	
+	<script>
+			function randomPage() {
+  var pages = ['type01.html', 'type02.html', 'type03.html', 'type04.html', 'type05.html', 'type06.html'];
+  var currentPage = window.location.pathname.split("/").pop();
+  var otherPages = pages.filter(page => page !== currentPage);
+  var randomPage = otherPages[Math.floor(Math.random() * otherPages.length)];
+  window.location.href = randomPage;}
+  
+    let font;
+
+let cylinderRadius = 150;
+let cylinderWidth = 150;
+let textTexture;
+let indexWord = 0;
+let words = ['MIAO  MIAO  MIAO  MIAO  MIAO  MIAO'];
+
+function preload() {
+  font = loadFont('https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf')
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight,WEBGL);
+	
+  textTexture = createGraphics(2*PI*cylinderRadius,windowHeight*2);
+	
+	textTexture.background(255);
+  textTexture.fill(255);
+	textTexture.textFont(font);
+  textTexture.textAlign(CENTER);
+  textTexture.textSize(50);
+
+}
+
+function draw() {
+	background(0);
+	noStroke();
+	
+	let rotation = 1;
+
+	let wave = (sin(frameCount * 0.008 + (0.008) * 0.008) * 1);
+	
+	textTexture.background(0);
+  textTexture.textSize(50);
+	for(let i = 0; i <=55; i++){
+		textTexture.fill(map(i, 0, 35, 0, 255)); // Aggiunta sfumatura
+		textTexture.text(words[indexWord], PI*cylinderRadius,i*50);
+	}
+	
+	image(textTexture, -1000,-1000);
+	
+	translate(-windowWidth, -100);
+	for(let i = 0; i <= 10; i++){
+		translate(cylinderRadius*2+100, 0);
+		push();
+		
+		rotateZ(radians(45));
+		push();
+		
+		rotateY(frameCount * 0.02 + i * 0.01); // Variazione angolo di rotazione
+	
+		texture(textTexture);
+		cylinder(cylinderRadius, windowHeight*2,24);
+		pop();
+		pop();
+	}	
+}
+
+function changeWord() {
+	indexWord++;
+	if(indexWord > 4){
+		indexWord = 0;
+	}
+	setTimeout(changeWord, 500)
+}
+</script>
+	
+</body>
+</html>

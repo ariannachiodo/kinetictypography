@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<style>
+    @font-face {
+    font-family: "Suisse Int'l Book";
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot");
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot?#iefix") format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.svg#Suisse Int'l Book") format("svg");
+}
+main{
+    background-color: rgb(255, 11, 11);
+}
+.marquee {
+    font-family: "Suisse Int'l Book";
+    font-size: 20px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-animation: marquee 30s linear infinite;
+  animation: marquee 30s linear infinite;
+   margin-top: -8px;
+   margin: 0;
+   padding: 0;
+   border: none;
+   color: white;
+   /* background-color: black; */
+}
+button {
+    font-family: "Suisse Int'l Book"; font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	position: relative;
+	border: none;
+    background: none;
+    color: rgb(0, 0, 0);
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    margin-top: 20px;
+    margin-top: 5px;
+
+}
+button:hover {
+    text-decoration: underline;
+  }
+
+
+@-webkit-keyframes marquee {
+  0% { text-indent: 100% }
+  100% { text-indent: -100% }
+}
+
+@keyframes marquee {
+  0% { text-indent: 100% }
+  100% { text-indent: -100% }
+}
+</style>
+</head>
+<body>
+    <div class="marquee">SEE MORE &ensp; &ensp; SEE MORE &ensp; &ensp;   SEE MORE &ensp; &ensp;  SEE MORE  &ensp; &ensp;  SEE MORE  &ensp; &ensp; SEE MORE &ensp; &ensp;  SEE MORE  &ensp; &ensp; SEE MORE  &ensp; &ensp; SEE MORE &ensp; &ensp;  SEE MORE &ensp; &ensp;  SEE MORE &ensp; &ensp;  SEE MORE &ensp; &ensp;  SEE MORE    </div>
+    <button onclick="randomPage()">RANDOMIZE</button>
+<br>
+
+
+
+
+</body>
+</html>

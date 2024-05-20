@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <iframe src="index.html" width="100%" height="40px"></iframe>
+	<title>FLOW</title>
+	<style>
+		@font-face {
+    font-family: "Suisse Int'l Book";
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot");
+    src: url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.eot?#iefix") format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.svg#Suisse Int'l Book") format("svg");
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+	background-color: black;
+}
+
+button {
+    font-family: "Suisse Int'l Book"; font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	position: absolute;
+	border: none;
+    background: none;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+    margin-bottom: 80px;
+
+
+}
+button:hover {
+    text-decoration: underline;
+  }
+
+
+	</style>
+</head>
+<body>
+	<button onclick="randomPage()">RANDOMIZE</button>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.min.js"></script>
+	
+	<script>
+			function randomPage() {
+  var pages = ['type01.html', 'type02.html', 'type03.html', 'type04.html', 'type05.html', 'type06.html'];
+  var currentPage = window.location.pathname.split("/").pop();
+  var otherPages = pages.filter(page => page !== currentPage);
+  var randomPage = otherPages[Math.floor(Math.random() * otherPages.length)];
+  window.location.href = randomPage;}
+  
+
+	const fontFile = "https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf";
+	let num = 10;
+    function setup() {
+        createCanvas(windowWidth, windowHeight);
+
+        font1 = loadFont('https://db.onlinewebfonts.com/t/17241fb9c2ffb3ec11eba762e771435f.ttf');
+	textAlign(CENTER, CENTER);
+	textSize(250);
+	
+}
+
+function draw() {
+	for (let y = 0; y < height; y += height / num) {
+		drawingContext.save();
+        textFont(font1);
+		noStroke(0);
+		fill(0);
+		rect(0, y, width, height / num);
+		drawingContext.clip();
+		fill(255);
+		text("MOVEMENT\nDONT MOVE\nMOVEMENT", width / 2  , height / 2 + 50 * tan(frameCount * 0.05 + 1.5 * noise(y)));
+		drawingContext.restore();
+	}
+}
+
+</script>
+	
+</body>
+</html>
