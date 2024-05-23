@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <iframe src="index.html" width="100%" height="40px"></iframe>
-	<title>MOVEMENT</title>
+	<title>FLOW</title>
 	<style>
 		@font-face {
     font-family: "Suisse Int'l Book";
@@ -34,6 +34,7 @@ button {
     cursor: pointer;
     outline: inherit;
     margin-bottom: 80px;
+	margin-left: 20px;
 
 
 }
@@ -78,7 +79,7 @@ function draw() {
 		rect(0, y, width, height / num);
 		drawingContext.clip();
 		fill(255);
-		text("MOVEMENT\nDONT MOVE\nMOVEMENT", width / 2  , height / 2 + 50 * tan(frameCount * 0.05 + 1.5 * noise(y)));
+		text("MOVEMENT\nDON'T MOVE\nMOVEMENT", width / 2  , height / 2 + 50 * tan(frameCount * 0.05 + 1.5 * noise(y)));
 		drawingContext.restore();
 	}
 }

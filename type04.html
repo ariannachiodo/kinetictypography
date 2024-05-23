@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <iframe src="index.html" width="100%" height="40px"></iframe>
-	<title>ROTATE</title>
+	<title>FLOW</title>
 	<style>
 		@font-face {
     font-family: "Suisse Int'l Book";
@@ -34,6 +34,7 @@ button {
     cursor: pointer;
     outline: inherit;
     margin-bottom: 80px;
+    margin-left: 20px;
 
 
 }
@@ -56,7 +57,7 @@ button:hover {
   var otherPages = pages.filter(page => page !== currentPage);
   var randomPage = otherPages[Math.floor(Math.random() * otherPages.length)];
   window.location.href = randomPage;}
-
+  
     let font, pos
 let fs = 300
 let t = 0
@@ -69,7 +70,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   textSize(fs)
   pos = font.textToPoints('ROTATE', windowWidth/5.5, windowHeight/1.8)
-  textAlign(windowWidth/2, windowHeight/2)
+  textAlign(CENTER,CENTER)
 }
 
 function draw() {
